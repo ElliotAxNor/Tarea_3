@@ -8,6 +8,16 @@ public partial class Form1 : Form
     private ComboBox? cmbCalculos;
     private Label? lblAltura;
     private TextBox? txtAltura;
+    private Label? lblAncho;
+    private TextBox? txtAncho;
+    private Label? lblBase;
+    private TextBox? txtBase;
+    private Label? lblLado1;
+    private TextBox? txtLado1;
+    private Label? lblLado2;
+    private TextBox? txtLado2;
+    private Label? lblLado3;
+    private TextBox? txtLado3;
     private Label? lblResultado;
     private TextBox? txtResultado;
     private Button? btnCalcular;
@@ -32,6 +42,8 @@ public partial class Form1 : Form
         cmbFiguras = new ComboBox();
         cmbFiguras.Items.Add("Selecciona figura");
         cmbFiguras.Items.Add("Cuadrado");
+        cmbFiguras.Items.Add("Rectangulo");
+        cmbFiguras.Items.Add("Triangulo");
         cmbFiguras.SelectedIndex=0;
         cmbFiguras.Location= new Point(10,40);
         cmbFiguras.SelectedValueChanged+=new EventHandler(cmb_ValueChanged);
@@ -64,8 +76,73 @@ public partial class Form1 : Form
         txtAltura.Location= new Point(60,75);
         txtAltura.Visible=false;
 
-        //Etiqueta Altura
-        lblResultado= new Label();
+        //Etiqueta Ancho
+        lblAncho = new Label();
+        lblAncho.Text = "Ancho";
+        lblAncho.AutoSize = true;
+        lblAncho.Location = new Point(10, 120);
+        lblAncho.Visible = false;
+
+        //TextBox Ancho
+        txtAncho = new TextBox();
+        txtAncho.Size = new Size(100, 20);
+        txtAncho.Location = new Point(60, 115);
+        txtAncho.Visible =false;
+
+        //Etiqueta Lado1
+        lblLado1 = new Label();
+        lblLado1.Text = "Lado 1";
+        lblLado1.AutoSize = true;
+        lblLado1.Location = new Point(10, 80);
+        lblLado1.Visible = false;
+
+        //TextBox Lado1
+        txtLado1 = new TextBox();
+        txtLado1.Size = new Size(100, 20);
+        txtLado1.Location = new Point(65, 75);
+        txtLado1.Visible = false;
+
+        //Etiqueta Lado2
+        lblLado2 = new Label();
+        lblLado2.Text = "Lado 2";
+        lblLado2.AutoSize = true;
+        lblLado2.Location = new Point(10, 120);
+        lblLado2.Visible = false;
+
+        //TextBox Lado2
+        txtLado2 = new TextBox();
+        txtLado2.Size = new Size(100, 20);
+        txtLado2.Location = new Point(65, 115);
+        txtLado2.Visible = false;
+
+        //Etiqueta Lado3
+        lblLado3 = new Label();
+        lblLado3.Text = "Lado 3";
+        lblLado3.AutoSize = true;
+        lblLado3.Location = new Point(10, 160);
+        lblLado3.Visible = false;
+
+        //TextBox Lado3
+        txtLado3 = new TextBox();
+        txtLado3.Size = new Size(100, 20);
+        txtLado3.Location = new Point(65, 155);
+        txtLado3.Visible = false;
+
+        //Etiqueta Base
+        lblBase = new Label();
+        lblBase.Text = "Base";
+        lblBase.AutoSize = true;
+        lblBase.Location = new Point(10, 120);
+        lblBase.Visible = false;
+
+        //TextBox Base
+        txtBase = new TextBox();
+        txtBase.Size = new Size(100, 20);
+        txtBase.Location = new Point(60, 115);
+        txtBase.Visible = false;
+
+        //Etiqueta Resultado
+        lblResultado = new Label();
         lblResultado.Text="Resultado";
         lblResultado.AutoSize=true;
         lblResultado.Location= new Point(10,280);
@@ -73,7 +150,7 @@ public partial class Form1 : Form
         //TextBox Prueba
         txtResultado=new TextBox();
         txtResultado.Size = new Size(100,20);
-        txtResultado.Location= new Point(70,275);
+        txtResultado.Location= new Point(90,275);
 
         //Boton Calcular
         btnCalcular= new Button();
@@ -89,6 +166,16 @@ public partial class Form1 : Form
         this.Controls.Add(cmbCalculos);
         this.Controls.Add(lblAltura);
         this.Controls.Add(txtAltura);
+        this.Controls.Add(lblBase);
+        this.Controls.Add(txtBase);
+        this.Controls.Add(lblAncho);
+        this.Controls.Add(txtAncho);
+        this.Controls.Add(lblLado1);
+        this.Controls.Add(txtLado1);
+        this.Controls.Add(lblLado2);
+        this.Controls.Add(txtLado2);
+        this.Controls.Add(lblLado3);
+        this.Controls.Add(txtLado3);
         this.Controls.Add(lblResultado);
         this.Controls.Add(txtResultado);
         this.Controls.Add(btnCalcular);
@@ -97,6 +184,7 @@ public partial class Form1 : Form
     private void cmb_ValueChanged(object sender, EventArgs e){
         if(cmbCalculos.SelectedIndex!=0 && cmbFiguras.SelectedIndex!=0){
             if(cmbFiguras.SelectedItem.ToString()=="Cuadrado"){
+                ocultarDemasElementos();
                 //cmbFigura.SelectedIndex==1
                 if(cmbCalculos.SelectedItem.ToString()=="Périmetro"){
                     txtAltura.Visible=true;
@@ -107,24 +195,131 @@ public partial class Form1 : Form
                     lblAltura.Visible=true;
                 }
             }
+
+            if (cmbFiguras.SelectedItem.ToString() == "Rectangulo")
+            {
+                ocultarDemasElementos();
+                //cmbFigura.SelectedIndex==1
+                if (cmbCalculos.SelectedItem.ToString() == "Périmetro")
+                {
+                    txtAltura.Visible = true;
+                    lblAltura.Visible = true;
+                    txtAncho.Visible=true;
+                    lblAncho.Visible=true;
+                }
+                if (cmbCalculos.SelectedItem.ToString() == "Área")
+                {
+                    txtAltura.Visible = true;
+                    lblAltura.Visible = true;
+                    txtAncho.Visible = true;
+                    lblAncho.Visible = true;
+                }
+            }
+
+            if (cmbFiguras.SelectedItem.ToString() == "Triangulo")
+            {
+                ocultarDemasElementos();
+                //cmbFigura.SelectedIndex==1
+                if (cmbCalculos.SelectedItem.ToString() == "Périmetro")
+                {
+                    lblLado1.Visible = true;
+                    txtLado1.Visible = true;
+                    lblLado2.Visible = true;
+                    txtLado2.Visible = true;
+                    lblLado3.Visible = true;
+                    txtLado3.Visible = true;
+                }
+                if (cmbCalculos.SelectedItem.ToString() == "Área")
+                {
+                    txtAltura.Visible = true;
+                    lblAltura.Visible = true;
+                    lblBase.Visible = true;
+                    txtBase.Visible = true;
+                }
+            }
         }
         else
         {
-            txtAltura.Visible=false;
-            lblAltura.Visible=false;
+            ocultarDemasElementos();
+
         }
     }
     private void btnCalcular_Click(object sender, EventArgs e){
         string calculo= cmbCalculos.SelectedItem.ToString();
-        if(txtAltura.Text!=""){
-            if(calculo=="Périmetro"){
-                int altura= Convert.ToInt32(txtAltura.Text);
-                txtResultado.Text=(altura*4).ToString();
+        if (cmbFiguras.SelectedItem.ToString() == "Cuadrado")
+        {
+            if (txtAltura.Text != "")
+            {
+                if (calculo == "Périmetro")
+                {
+                    int altura = Convert.ToInt32(txtAltura.Text);
+                    txtResultado.Text = (altura * 4).ToString();
+                }
+                if (calculo == "Área")
+                {
+                    int altura = Convert.ToInt32(txtAltura.Text);
+                    txtResultado.Text = (altura * altura).ToString();
+                }
             }
-            if(calculo=="Área"){
-                int altura= Convert.ToInt32(txtAltura.Text);
-                txtResultado.Text=(altura*altura).ToString();
+        }
+        if (cmbFiguras.SelectedItem.ToString() == "Rectangulo")
+        {
+            if (txtAltura.Text != "" && txtAncho.Text != "")
+            {
+                if (calculo == "Périmetro")
+                {
+                    int altura = Convert.ToInt32(txtAltura.Text);
+                    int ancho = Convert.ToInt32(txtAncho.Text);
+                    txtResultado.Text = ((altura * 2)+(ancho*2)).ToString();
+                }
+                if (calculo == "Área")
+                {
+                    int ancho = Convert.ToInt32(txtAncho.Text);
+                    int altura = Convert.ToInt32(txtAltura.Text);
+                    txtResultado.Text = (altura * ancho).ToString();
+                }
+            }
+        }
+        if (cmbFiguras.SelectedItem.ToString() == "Triangulo")
+        {
+            
+            if (calculo == "Périmetro")
+            {
+                if (txtLado1.Text != "" && txtLado2.Text != "" && txtLado3.Text != "")
+                {
+                    int lado1 = Convert.ToInt32(txtLado1.Text);
+                    int lado2 = Convert.ToInt32(txtLado2.Text);
+                    int lado3 = Convert.ToInt32(txtLado3.Text);
+                    txtResultado.Text = ((lado1+lado2+lado3)).ToString();
+                }
+            }
+            if (calculo == "Área")
+            {
+                if (txtAltura.Text != "" && txtBase.Text != "")
+                {
+                    int base_ = Convert.ToInt32(txtBase.Text);
+                    int altura = Convert.ToInt32(txtAltura.Text);
+                    txtResultado.Text = ((altura * base_) / 2).ToString();
+                }
             }
         }
     }
+
+    public void ocultarDemasElementos()
+    {
+        txtAltura.Visible = false;
+        lblAltura.Visible = false;
+        txtAncho.Visible = false;
+        lblAncho.Visible = false;
+        lblBase.Visible = false;
+        txtBase.Visible = false;
+        lblLado1.Visible = false;
+        txtLado1.Visible = false;
+        lblLado2.Visible = false;
+        txtLado2.Visible = false;
+        lblLado3.Visible = false;
+        txtLado3.Visible = false;
+    }
 }
+
+
